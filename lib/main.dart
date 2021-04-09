@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onlineshopping/screen/loginScreen.dart';
+import 'package:onlineshopping/screen/homeScreen.dart';
 
 void main() {
   runApp(MyApp());
