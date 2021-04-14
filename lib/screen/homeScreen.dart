@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:onlineshopping/widgets/categoryContainer.dart';
+import 'package:onlineshopping/widgets/middleContainer.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -24,13 +26,6 @@ class HomeScreen extends StatelessWidget {
                   //mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 20),
-                    //   child: Text(
-                    //     'Hey',
-                    //     style: TextStyle(color: Colors.white),
-                    //   ),
-                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -77,35 +72,47 @@ class HomeScreen extends StatelessWidget {
                     // middle container with huge container and text
                     Container(
                       width: size.width,
-                      height: size.height * 0.3,
-                      child: Container(
-                        width: size.width,
-                        height: size.height * 0.2,
-                        child: Column(
-                          children: [
-                            // categories text and see all button
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  MiddleContainer(
-                                    size: size,
-                                    icon: Icon(
-                                      Icons.food_bank_sharp,
-                                      color: Colors.orange,
-                                      size: 50,
-                                    ),
-                                    categoryText: 'vegetabel'.toLowerCase(),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                      height: size.height * 0.25,
+                      child: Column(
+                        children: [
+                          // categories text and see all button
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                MiddleContainer(
+                                  size: size,
+                                  discount: '30 % Discount',
+                                  imagepath: 'assets/images/food.png',
+                                  color: Colors.grey.shade300,
+                                ),
+                                MiddleContainer(
+                                  size: size,
+                                  discount: '10 % Discount',
+                                  imagepath: 'assets/images/veg.png',
+                                  color: Colors.orange.shade300,
+                                ),
+                                MiddleContainer(
+                                  size: size,
+                                  discount: '15 % Discount',
+                                  imagepath: 'assets/images/meat.png',
+                                  color: Colors.lightBlue.shade300,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     )
+
+                    // bottom container with large image size children
+                    //named as popular deals
+
+                    ,
+                    BottomDealsContainer(
+                      size: size,
+                    ),
                   ],
                 )),
           ],
@@ -211,72 +218,105 @@ class MyParentCategoryContainer extends StatelessWidget {
   }
 }
 
-class CategoryContainer extends StatelessWidget {
-  CategoryContainer({
-    this.size,
-    this.icon,
-    this.categoryText,
-  });
+class BottomDealsContainer extends StatelessWidget {
+  const BottomDealsContainer({
+    Key key,
+    @required this.size,
+  }) : super(key: key);
 
   final Size size;
-  final icon;
-  final categoryText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Column(
-        children: [
-          Container(
-            width: size.width * 0.2,
-            height: size.height * 0.1,
-            decoration: BoxDecoration(
-              color: Colors.green.shade100,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: icon,
-          ),
-          Text('$categoryText')
-        ],
-      ),
-    );
-  }
-}
-
-class MiddleContainer extends StatelessWidget {
-  MiddleContainer({
-    this.size,
-    this.icon,
-    this.categoryText,
-  });
-
-  final Size size;
-  final icon;
-  final categoryText;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Container(
-          width: size.width * 0.7,
-          height: size.height * 0.2,
-          decoration: BoxDecoration(
-            color: Colors.green.shade100,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            children: [
-              CircleAvatar(
-                backgroundImage: AssetImage('assets/images/food.png'),
-                radius: 60,
+        width: size.width * 0.9,
+        height: size.height * 0.2,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(25),
+        ),
+        child: Column(
+          children: [
+            // categories text and see all button
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text('Popular Deals'),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'See all',
+                    style: TextStyle(color: Colors.green.shade400),
+                  ),
+                )
+              ],
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/food.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/meat.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/veg.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/veg.png'),
+                        fit: BoxFit.fill,
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  )
+                ],
               ),
-              Column(
-                children: [],
-              )
-            ],
-          )),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
