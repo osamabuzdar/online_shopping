@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onlineshopping/screen/categoryScreen.dart';
 import 'package:onlineshopping/widgets/categoryContainer.dart';
 import 'package:onlineshopping/widgets/middleContainer.dart';
 
@@ -150,12 +151,27 @@ class MyParentCategoryContainer extends StatelessWidget {
               children: [
                 Text('Categories'),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CategoryScreen(),
+                      ),
+                    );
+                  },
                   child: Text(
-                    'see all',
+                    'See all',
                     style: TextStyle(color: Colors.green.shade400),
                   ),
-                )
+                ),
+
+                // GestureDetector(
+                //   onTap: () {},
+                //   child: Text(
+                //     'See all',
+                //     style: TextStyle(color: Colors.green.shade400),
+                //   ),
+                // ),
               ],
             ),
             SingleChildScrollView(
