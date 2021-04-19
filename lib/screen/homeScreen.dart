@@ -2,13 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:onlineshopping/screen/categoryScreen.dart';
 import 'package:onlineshopping/widgets/categoryContainer.dart';
 import 'package:onlineshopping/widgets/middleContainer.dart';
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  var _bottomNavIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.green,
+          onPressed: () {},
+          child: Icon(Icons.shop_outlined),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: AnimatedBottomNavigationBar(
+            icons: [Icons.home, Icons.add, Icons.shop, Icons.horizontal_rule],
+            backgroundColor: Colors.green,
+            activeIndex: _bottomNavIndex,
+            gapLocation: GapLocation.center,
+            notchSmoothness: NotchSmoothness.defaultEdge,
+            leftCornerRadius: 32,
+            rightCornerRadius: 32,
+            onTap: (index) {
+              setState(() => _bottomNavIndex = index);
+            }),
         // appBar: AppBar(
         //   title: Text('Welcome Home Screen'),
         // ),

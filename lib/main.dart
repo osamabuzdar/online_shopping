@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:onlineshopping/screen/categoryScreen.dart';
 import 'package:onlineshopping/screen/loginScreen.dart';
 import 'package:onlineshopping/screen/homeScreen.dart';
+import 'package:onlineshopping/screen/quantityScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: CategoryScreen(),
+      home: HomeScreen(),
     );
   }
 }

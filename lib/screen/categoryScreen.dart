@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onlineshopping/screen/quantityScreen.dart';
 
 class CategoryScreen extends StatefulWidget {
   @override
@@ -14,6 +15,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
     'veg.png',
     'grocery.png'
   ];
+
+  // maps which basically dictionary or other case they structured like json
+  var vegetable = {'name': 'ginger', 'price': 1};
+
   var colorList = [
     Colors.red,
     Colors.grey,
@@ -55,24 +60,30 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        Container(
-                          width: 90,
-                          height: 90,
-                          decoration: BoxDecoration(
-                            color: colorList[index],
-                            borderRadius: BorderRadius.circular(20),
-                            image: DecorationImage(
-                              image: AssetImage(
-                                'assets/images/${imageList[index]}',
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => QuantityScreen(
+                                  title: myList[index],
+                                ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: 90,
+                            height: 90,
+                            decoration: BoxDecoration(
+                              color: colorList[index],
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                image: AssetImage(
+                                  'assets/images/${imageList[index]}',
+                                ),
                               ),
                             ),
                           ),
-                          // child: Image(
-                          //   image: AssetImage(
-                          //     'assets/images/${imageList[index]}',
-                          //   ),
-                          //   fit: BoxFit.fill,
-                          // ),
                         ),
                         Text(
                           myList[index],
